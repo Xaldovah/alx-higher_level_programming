@@ -9,15 +9,15 @@
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *cheetah = list;
-	listint_t *snail = list;
+	listint_t *hare = list;
+	listint_t *tortoise = list;
 
-	while (cheetah && snail && snail->next)
+	while (hare && tortoise && tortoise->next)
 	{
-		snail = snail->next;
-		cheetah = cheetah->next->next;
+		tortoise = tortoise->next;
+		hare = hare->next->next;
 
-		if (snail == cheetah)
+		if (tortoise == hare)
 			return 1;
 	}
 	return 0;
