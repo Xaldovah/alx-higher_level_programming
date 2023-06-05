@@ -12,13 +12,13 @@ int check_cycle(listint_t *list)
 	listint_t *hare = list;
 	listint_t *tortoise = list;
 
-	while (hare && tortoise && tortoise->next)
+	while (hare && tortoise && tortoise->next && hare->next)
 	{
 		tortoise = tortoise->next;
 		hare = hare->next->next;
 
 		if (tortoise == hare)
-			return 1;
+			return (1);
 	}
-	return 0;
+	return (0);
 }
