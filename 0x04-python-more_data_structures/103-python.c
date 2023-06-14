@@ -3,12 +3,12 @@
 
 void print_hexn(const char *str, int n)
 {
-	int i = 0;
+	int a = 0;
 
-	for (; i < n - 1; ++i)
-		printf("%02x ", (unsigned char) str[i]);
+	for (; a < n - 1; ++a)
+		printf("%02x ", (unsigned char) str[a]);
 
-	printf("%02x", str[i]);
+	printf("%02x", str[a]);
 }
 
 void print_python_bytes(PyObject *p)
@@ -39,7 +39,7 @@ void print_python_bytes(PyObject *p)
 
 void print_python_list(PyObject *p)
 {
-	int i = 0, list_len = 0;
+	int a = 0, list_len = 0;
 	PyObject *item;
 	PyListObject *clone = (PyListObject *) p;
 
@@ -48,10 +48,10 @@ void print_python_list(PyObject *p)
 	printf("[*] Size of the Python List = %d\n", list_len);
 	printf("[*] Allocated = %d\n", (int) clone->allocated);
 
-	for (; i < list_len; ++i)
+	for (; a < list_len; ++a)
 	{
-		item = PyList_GET_ITEM(p, i);
-		printf("Element %d: %s\n", i, item->ob_type->tp_name);
+		item = PyList_GET_ITEM(p, a);
+		printf("Element %d: %s\n", a, item->ob_type->tp_name);
 
 		if (PyBytes_Check(item))
 			print_python_bytes(item);
