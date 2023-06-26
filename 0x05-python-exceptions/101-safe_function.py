@@ -8,9 +8,9 @@ def safe_function(fct, *args):
         result = fct(*args)
     except ZeroDivisionError:
         result = None
-        sys.stderr.write("Exception: zero division\n")
+        sys.stderr.write("Exception: division by zero\n")
     except IndexError:
         result = None
-        sys.stderr.write("Exception: index too long\n")
+        sys.stderr.write("Exception: list index out of range\n")
 
     return result
