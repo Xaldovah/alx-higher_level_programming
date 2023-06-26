@@ -11,7 +11,7 @@ def magic_calculation(a, b):
                 raise Exception("Far Off")
 
             result += a ** b / i
-        except (ValueError, IndexError, ZeroDivisionError):
+        except Exception:
             result = b + a
             break
 
