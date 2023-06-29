@@ -54,7 +54,7 @@ class Square:
     @property
     def position(self):
         """return the private instance"""
-        return self.__position
+        return self._position
 
     """position setter"""
     @position.setter
@@ -70,7 +70,7 @@ class Square:
             raise TypeError("position must be a tuple of 2 positive integers")
 
         """Assign value to position"""
-        self.position = position
+        self._position = position
 
     """tuple def with one arg"""
     def __tuple(self, position):
@@ -122,9 +122,9 @@ class Square:
             """and return none"""
             return None
         """check if pos is greater than 0"""
-        if self.__position[1] > 0:
+        if self._position[1] > 0:
             """Enter loop"""
-            for i in range(self.__position[1]):
+            for i in range(self._position[1]):
                 """print empty spaces"""
                 print("")
         """enter j loop"""
@@ -132,7 +132,7 @@ class Square:
             """if modulo is equal to 1"""
             if j % self.__size == 1:
                 """print"""
-                print("{:>{w}}".format("#", w=self.__position[0] + 1), end="")
+                print("{:>{w}}".format("#", w=self._position[0] + 1), end="")
             else:
                 print("#", end="")
                 """if modulo is equal to 0 and j is greater than 0"""
