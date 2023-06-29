@@ -15,7 +15,7 @@ class Square:
             """if size is less than 0 raise ValueError"""
             raise ValueError("size must be >= 0")
 
-          """check the tuple position if false"""
+        """check the tuple position if false"""
         if self.__tuple(position) is False:
             raise TypeError("position must be a tuple of 2 positive integers")
         if self.__indexes(position) is False:
@@ -59,7 +59,7 @@ class Square:
     """position setter"""
     @position.setter
     def position(self, position):
-         """check the tuple position if false"""
+        """check the tuple position if false"""
         if self.__tuple(position) is False:
             raise TypeError("position must be a tuple of 2 positive integers")
         if self.__indexes(position) is False:
