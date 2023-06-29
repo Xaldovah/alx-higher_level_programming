@@ -1,10 +1,8 @@
 #!/usr/bin/python3
+"""import the math module"""
+
 import math
-"""MagicClass Class
-
-A MagicClass that gives the same output as the provided bytecodes
-
-"""
+"""MagicClass Class"""
 
 
 class MagicClass:
