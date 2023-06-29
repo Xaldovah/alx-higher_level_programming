@@ -1,23 +1,22 @@
 #!/usr/bin/python3
 import math
+"""MagicClass Class
 
-"""
-    Represents a magical class that performs calculations on circles.
+A MagicClass that gives the same output as the provided bytecodes
+
 """
 
 
 class MagicClass:
-    """Initializes a MagicClass object with the given radius."""
+    """__init__ Initializes the class object with the given radius."""
     def __init__(self, radius):
-        """Args:
-            radius (float): The radius of the circle.
-
-        Raises:
-            TypeError: If the radius is not a number (int or float).
-        """
+        """Assign value to radius"""
         self.__radius = 0
+        """Check if type of radius is not an int or a float"""
         if type(radius) is not int and type(radius) is not float:
+            """if yes raise the appropriate error message"""
             raise TypeError("radius must be a number")
+        """Assign value to radius"""
         self.__radius = radius
 
     """Calculates and returns the area of the circle."""
