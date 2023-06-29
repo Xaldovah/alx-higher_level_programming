@@ -1,128 +1,64 @@
 #!/usr/bin/python3
+"""Square Class"""
+
 
 class Square:
-    """
-    Square Class
-    """
-
+    """__init__ Initializes the Square instance"""
     def __init__(self, size=0):
-        """
-        Initializes the Square instance.
-
-        Args:
-            size (int): The size of the square. Default is 0.
-
-        Raises:
-            TypeError: If size is not a number (int or float).
-            ValueError: If size is less than 0.
-        """
+        """Assign value to size"""
         self.size = size
 
+    """Getter method for the size attributes"""
     @property
     def size(self):
-        """
-        Getter method for the size attribute.
-
-        Returns:
-            int: The size of the square.
-        """
+        """Returns: int: The size of the square"""
         return self.__size
 
+    """Setter method for the size attribute."""
     @size.setter
     def size(self, value):
-        """
-        Setter method for the size attribute.
-
-        Args:
-            value (int or float): The size value to set.
-
-        Raises:
-            TypeError: If value is not a number (int or float).
-            ValueError: If value is less than 0.
-        """
+        """Checks if value is a number"""
         if not isinstance(value, (int, float)):
+            """if not raises TypeError message"""
             raise TypeError("size must be a number")
+        """Checks if value is less than 0"""
         if value < 0:
+            """if not raises ValueError message"""
             raise ValueError("size must be >= 0")
+        """Assigns value to size"""
         self.__size = value
 
+    """Calculates and returns the area of the square"""
     def area(self):
-        """
-        Calculates and returns the area of the square.
-
-        Returns:
-            float: The area of the square.
-        """
+        """Returns: float: The area of the square"""
         return self.__size ** 2
 
+    """Overloads the == operator to compare the areas of two squares"""
     def __eq__(self, other):
-        """
-        Overloads the == operator to compare the areas of two squares.
-
-        Args:
-            other (Square): The other Square instance to compare.
-
-        Returns:
-            bool: True if the areas are equal, False otherwise.
-        """
+        """Returns: bool: True if the areas are equal, False otherwise"""
         return self.area() == other.area()
 
+    """Overloads the != operator to compare the areas of two squares"""
     def __ne__(self, other):
-        """
-        Overloads the != operator to compare the areas of two squares.
-
-        Args:
-            other (Square): The other Square instance to compare.
-
-        Returns:
-            bool: True if the areas are not equal, False otherwise.
-        """
+        """Returns: bool: True if the areas are not equal, False otherwise"""
         return self.area() != other.area()
 
+    """Overloads the > operator to compare the areas of two squares"""
     def __gt__(self, other):
-        """
-        Overloads the > operator to compare the areas of two squares.
-
-        Args:
-            other (Square): The other Square instance to compare.
-
-        Returns:
-            bool: True if area is equal or less than square, False otherwise.
-        """
+        """Returns: bool: True if area equal or less than square, or False"""
         return self.area() > other.area()
 
+    """Overloads the >= operator to compare the areas of two squares."""
     def __ge__(self, other):
-        """
-        Overloads the >= operator to compare the areas of two squares.
-
-        Args:
-            other (Square): The other Square instance to compare.
-
-        Returns:
-            bool: True if area is equal or less than square, False otherwise.
-        """
+        """Returns: True if area is equal or less than square, or False"""
         return self.area() >= other.area()
 
+    """Overloads the < operator to compare the areas of two squares"""
     def __lt__(self, other):
-        """
-        Overloads the < operator to compare the areas of two squares.
-
-        Args:
-            other (Square): The other Square instance to compare.
-
-        Returns:
-            bool: True if area is equal or less than square, False otherwise.
-        """
+        """Returns: True if area is equal or less than square, or False"""
         return self.area() < other.area()
 
+    """Overloads the <= operator to compare the areas of two squares"""
     def __le__(self, other):
-        """
-        Overloads the <= operator to compare the areas of two squares.
-
-        Args:
-            other (Square): The other Square instance to compare.
-
-        Returns:
-            bool: True if area is equal or less than square, False otherwise.
-        """
+        """Returns: True if area is equal or less than square, or False"""
         return self.area() <= other.area()
