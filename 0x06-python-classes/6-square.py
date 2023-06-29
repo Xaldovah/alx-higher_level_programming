@@ -15,6 +15,21 @@ class Square:
             """if size is less than 0 raise ValueError"""
             raise ValueError("size must be >= 0")
 
+          """check the tuple position if false"""
+        if self.__tuple(position) is False:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if self.__indexes(position) is False:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if self.__integers(position) is False:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if self.__values(position) is False:
+            raise TypeError("position must be a tuple of 2 positive integers")
+
+        """Assign value to size"""
+        self.size = size
+        """Assign value to position"""
+        self.position = position
+
     """Decorator"""
     @property
     def size(self):
@@ -44,7 +59,7 @@ class Square:
     """position setter"""
     @position.setter
     def position(self, position):
-        """check the tuple position if false"""
+         """check the tuple position if false"""
         if self.__tuple(position) is False:
             raise TypeError("position must be a tuple of 2 positive integers")
         if self.__indexes(position) is False:
@@ -54,7 +69,7 @@ class Square:
         if self.__values(position) is False:
             raise TypeError("position must be a tuple of 2 positive integers")
 
-        """Assign value to the private instance position"""
+        """Assign value to position"""
         self.position = position
 
     """tuple def with one arg"""
