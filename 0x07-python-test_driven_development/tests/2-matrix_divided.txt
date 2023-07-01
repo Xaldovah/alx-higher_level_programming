@@ -1,0 +1,18 @@
+1. Division matrix module
+
+Import module:
+        >>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+
+Function:
+        A funcion that divides a matrix
+
+        'matrix' and 'div' must be integers or floats,
+	otherwise raise a TypeError exception
+        with the following message 'matrix must be a matrix (list of lists)
+	of integers/floats
+
+Test Cases:
+
+	>>> matrix_divided()
+	Traceback (most recent call last):
+	TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
