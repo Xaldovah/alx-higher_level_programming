@@ -10,9 +10,64 @@ Function:
 	with the following message 'a must be an integer' or 'b must be an integer'
 
 Test Cases:
-
-Test case 1: A test case to check if the function has empty parameters
-
 	>>> add_integer()
 	Traceback (most recent call last):
 	TypeError: add_integer() missing 1 required positional argument: 'a'
+
+	>>> add_integer(a, 15)
+	Traceback (most recent call last):
+	NameError: name 'a' is not defined
+
+	>>> add_integer(1.0, )
+	99
+
+	>>> add_integer(5)
+	103
+
+	>>> add_integer(4, 7)
+	11
+
+	>>> add_integer(3.0, 6.0)
+	9
+
+	>>> add_integer(8, 13.0)
+	21
+
+	>>> add_integer(15.0, 4)
+	19
+
+	>>> add_integer(-2.0, -3.0)
+	-5
+
+	>>> add_integer(-6.0, -2)
+	-8
+
+	>>> add_integer(100.5, -6.0)
+	94
+
+	>>> add_integer(2, 1e500)
+	Traceback (most recent call last):
+	OverflowError: cannot convert float infinity to integer
+
+	>>> add_integer(453e1536, -1)
+	Traceback (most recent call last):
+	OverflowError: cannot convert float infinity to integer
+
+	>>> add_integer(None, 5)
+	Traceback (most recent call last):
+	TypeError: a must be an integer
+
+	>>> add_integer(9, None)
+	Traceback (most recent call last):
+	TypeError: b must be an integer
+
+	>>> add_integer([1, 2], 7)
+	Traceback (most recent call last):
+	TypeError: a must be an integer
+
+	>>> add_integer(4, "Car")
+	Traceback (most recent call last):
+	TypeError: b must be an integer
+
+	>>> type(add_integer(9, 2))
+	<class 'int'>
