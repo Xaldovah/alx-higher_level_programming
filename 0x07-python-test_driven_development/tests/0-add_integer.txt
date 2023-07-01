@@ -1,0 +1,18 @@
+1. Integer addition module
+
+Import module:
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+Function:
+	A funcion that add two integers
+	
+	'a' and 'b' must be integers or floats, otherwise raise a TypeError exception
+	with the following message 'a must be an integer' or 'b must be an integer'
+
+Test Cases:
+
+Test case 1: A test case to check if the function has empty parameters
+
+	>>> add_integer()
+	Traceback (most recent call last):
+	TypeError: add_integer() missing 1 required positional argument: 'a'
