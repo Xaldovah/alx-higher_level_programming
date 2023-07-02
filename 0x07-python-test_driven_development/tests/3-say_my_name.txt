@@ -1,0 +1,47 @@
+1. say_my_name module
+
+Import module:
+        >>> say_my_name = __import__('3-say_my_name').say_my_name
+
+Function:
+        A function that prints a name string
+
+        'first_name' and 'last_name' must be strings,
+        otherwise raise a TypeError exception
+        with the following message 'first_name must be a string' or 'last_name must be a string'
+
+Test Cases:
+
+	>>> say_my_name("John", "Doe")
+	My name is John Doe
+
+	>>> say_my_name("Bob", last_name="Smith")
+	My name is Bob Smith
+
+	>>> say_my_name(first_name="Jane", last_name="Brown")
+	My name is Jane Brown
+
+	>>> say_my_name(123, "Doe")
+	Traceback (most recent call last):
+	TypeError: first_name must be a string
+
+	>>> say_my_name("John", 456)
+	Traceback (most recent call last):
+	TypeError: last_name must be a string
+
+	>>> say_my_name("John", "@#$")
+	My name is John @#$
+
+	>>> say_my_name("你好", "世界")
+	My name is 你好 世界
+
+	>>> say_my_name("VeryLongFirstName", "VeryLongLastName")
+	My name is VeryLongFirstName VeryLongLastName
+
+	>>> say_my_name("John", ["Doe"])
+	Traceback (most recent call last):
+	TypeError: last_name must be a string
+
+	>>> say_my_name("John", "Doe", "Smith")
+	Traceback (most recent call last):
+	TypeError: say_my_name() takes from 1 to 2 positional arguments but 3 were given
