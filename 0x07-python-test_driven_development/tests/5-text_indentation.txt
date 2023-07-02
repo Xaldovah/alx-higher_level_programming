@@ -1,0 +1,88 @@
+Import module:
+        >>> text_indentation = __import__('5-text_indentation').text_indentation
+
+Function:
+        A function that prints a text with 2 new lines after each of these characters: ., ? and :
+
+        'text' must be a string,
+        otherwise raise a TypeError exception
+        with the following message 'text must be a string'
+
+Test Cases:
+	>>> text_indentation("Hello. How are you? I'm fine.")
+	Hello.
+	<BLANKLINE>
+	How are you?
+	<BLANKLINE>
+	I'm fine.
+	<BLANKLINE>
+
+	>>> text_indentation("This is a test: testing.")
+	This is a test:
+	<BLANKLINE>
+	testing.
+	<BLANKLINE>
+
+	>>> text_indentation("No newline characters here")
+	No newline characters here
+
+	>>> text_indentation("")
+    
+	>>> text_indentation(123)
+	Traceback (most recent call last):
+    	...
+	TypeError: text must be a string
+
+	>>> text_indentation("One sentence without any special characters")
+	One sentence without any special characters
+
+	>>> text_indentation("Leading and trailing spaces. ")
+	Leading and trailing spaces.
+	<BLANKLINE>
+
+	>>> text_indentation("Multiple. Special. Characters. In. A. Row.")
+	Multiple.
+	<BLANKLINE>
+	Special.
+	<BLANKLINE>
+	Characters.
+	<BLANKLINE>
+	In.
+	<BLANKLINE>
+	A.
+	<BLANKLINE>
+	Row.
+	<BLANKLINE>
+
+	>>> text_indentation(2)
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
+
+	>>> text_indentation('   .?:      ')
+	.
+	<BLANKLINE>
+	?
+	<BLANKLINE>
+	:
+	<BLANKLINE>
+
+	>>> text_indentation([2, 3, 4])
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
+
+	>>> text_indentation([])
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
+
+	>>> text_indentation({})
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
+
+	>>> text_indentation(-1)
+	Traceback (most recent call last):
+	...
+	TypeError: text must be a string
