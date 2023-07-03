@@ -1,0 +1,37 @@
+Import module:
+	>>> matrix_mul = __import__('100-matrix_mul').matrix_mul
+
+Function:
+        a function that multiplies 2 matrices:
+        'matrix' must be an integer or a float,
+        otherwise raise a TypeError exception
+        with the following message 'm_a should contain only integers or floats or
+	m_b should contain only integers or floats'
+
+Test Cases:
+
+	>>> matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]])
+	[[7, 10], [15, 22]]
+
+	>>> matrix_mul([[1, 2]], [[3, 4], [5, 6]])
+	[[13, 16]]
+
+	>>> matrix_mul(1, 2)
+	Traceback (most recent call last):
+	TypeError: m_a must be a list
+
+	>>> matrix_mul([], 43)
+	Traceback (most recent call last):
+	TypeError: m_b must be a list
+
+	>>> matrix_mul([[1, 2], [3, 4]], [['a', 2], [13, 4]])
+	Traceback (most recent call last):
+	TypeError: m_b should contain only integers or floats
+
+	>>> matrix_mul([[1, 2, 3], [4, 5], [6, 7, 8]], [[1]])
+	Traceback (most recent call last):
+	TypeError: each row of m_a must be of the same size
+
+	>> matrix_mul([[1, 2, 3], [4, 5, 6]], [[1, 2], [3, 4, 5], [6, 7, 8]])
+	Traceback (most recent call last):
+	TypeError: each row of m_b must be of the same size
