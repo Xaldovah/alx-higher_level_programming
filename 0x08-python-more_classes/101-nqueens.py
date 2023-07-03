@@ -11,44 +11,22 @@ def is_safe(bd, row, col):
     return True
 
 
-def solve_nqueens(bd, row, n):
-    # Base case: If all queens are placed, print the solution
+def solve_nqueens(bd, row, n, solutions):
     if row == n:
-        print([[i, bd[i]] for i in range(n)])
+        # Add the solution to the list
+        solutions.append([[i, bd[i]] for i in range(n)])
         return
 
-    # Try placing a queen in each column of the current row
     for col in range(n):
         if is_safe(bd, row, col):
-            bd[row] = col  # Place the queen at board[row][col]
-            solve_nqueens(bd, row + 1, n)  # Recur for the next row
-            bd[row] = -1  # Backtrack: Remove the queen
-
-
-def root(P):
-    return P
-
-
-def reject(P, c):
-    return False
-
-
-def accept(P, c):
-    return True
-
-
-def first(P, c):
-    return c
-
-
-def next(P, s):
-    if s == P:
-        return None
-    return P
+            bd[row] = col
+            solve_nqueens(bd, row + 1, n, solutions)
+            bd[row] = -1
 
 
 def output(P, c):
-    pass
+    for solution in c:
+        print(solution)
 
 
 def nqueens(n):
@@ -60,11 +38,14 @@ def nqueens(n):
         sys.exit(1)
 
     bd = [-1] * n  # Initialize an empty chessboard
+    solutions = []
 
-    solve_nqueens(bd, 0, n)
+    solve_nqueens(bd, 0, n, solutions)
+
+    output(None, solutions)
 
 
-if __name__ == '__main__':
+def main():
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         sys.exit(1)
@@ -75,3 +56,7 @@ if __name__ == '__main__':
     except ValueError:
         print("N must be an integer")
         sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()
