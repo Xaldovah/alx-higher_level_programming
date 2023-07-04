@@ -3,9 +3,9 @@ import sys
 
 
 def is_safe(bd, row, col):
-    # Check if a queen can be placed at board[row][col] position
+    """Check if a queen can be placed at board[row][col] position"""
     for i in range(row):
-        # Check if there is a queen in the same column or diagonals
+        """Check if there is a queen in the same column or diagonals"""
         if bd[i] == col or bd[i] - col == i - row or bd[i] - col == row - i:
             return False
     return True
@@ -13,7 +13,7 @@ def is_safe(bd, row, col):
 
 def solve_nqueens(bd, row, n, solutions):
     if row == n:
-        # Add the solution to the list
+        """Add the solution to the list"""
         solutions.append([[i, bd[i]] for i in range(n)])
         return
 
@@ -54,7 +54,7 @@ def main():
         N = int(sys.argv[1])
         nqueens(N)
     except ValueError:
-        print("N must be an integer")
+        print("N must be an number")
         sys.exit(1)
 
 
