@@ -54,7 +54,7 @@ def main():
         N = int(sys.argv[1])
         nqueens(N)
     except ValueError:
-        print("N must be an number")
+        print("N must be a number")
         sys.exit(1)
 
 
