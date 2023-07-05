@@ -45,6 +45,13 @@ Test Cases:
 	>>> add_integer(100.5, -6.0)
 	94
 
+	>>> add_integer(2.5, 7.3)
+	9
+
+	>>> add_integer(float("nan"))
+	Traceback (most recent call last):
+	ValueError: cannot convert float NaN to integer
+
 	>>> add_integer(2, 1e500)
 	Traceback (most recent call last):
 	OverflowError: cannot convert float infinity to integer
