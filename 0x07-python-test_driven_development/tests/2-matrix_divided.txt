@@ -46,10 +46,15 @@ Test Cases:
 	Traceback (most recent call last):
 	TypeError: matrix_divided() missing 1 required positional argument: 'div'
 
-	>>> matrix_divided([[9, "g"], [5, 6]], 8)
+	>>> matrix_divided([[9, '7'], [5, 6]], 8)
 	Traceback (most recent call last):
 	TypeError: unsupported operand type(s) for /: 'str' and 'int'
 
 	>>> matrix_divided([[1, 2, 3],[4, 5, 6]], "Python")
 	Traceback (most recent call last):
 	TypeError: div must be a number
+
+	>>> matrix = [['1', '2', '3'], ['4', '5', '6']]
+	>>> matrix_divided(matrix, 3)
+	Traceback (most recent call last):
+	TypeError: unsupported operand type(s) for /: 'str' and 'int'
