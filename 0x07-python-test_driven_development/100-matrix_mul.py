@@ -44,6 +44,10 @@ def matrix_mul(m_a, m_b):
         raise TypeError("each row of m_b must be of the same size")
     if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
+    if not m_a:
+        raise ValueError("m_a can't be empty")
+    if not m_b:
+        raise ValueError("m_b can't be empty")
 
     return [[sum(a * b for a, b in zip(row_a, column_b))
              for column_b in zip(*m_b)] for row_a in m_a]
