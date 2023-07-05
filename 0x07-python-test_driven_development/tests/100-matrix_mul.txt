@@ -25,11 +25,11 @@ Test Cases:
 
 	>>> matrix_mul([[1, 2], [3, 4]], [['a', 2], [13, 4]])
 	Traceback (most recent call last):
-	TypeError: m_b should contain only integers or floats
+	ValueError: m_b should contain only integers or floats
 
 	>>> matrix_mul([[1, 2, 3], [4, 5], [6, 7, 8]], [[1]])
 	Traceback (most recent call last):
-	TypeError: each row of m_a must be of the same size
+	ValueError: m_a and m_b can't be multiplied
 
 	>> matrix_mul([[1, 2, 3], [4, 5, 6]], [[1, 2], [3, 4, 5], [6, 7, 8]])
 	Traceback (most recent call last):
