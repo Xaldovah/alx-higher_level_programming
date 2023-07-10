@@ -6,4 +6,5 @@ class MyList(list):
     """inherits from the class list"""
     def print_sorted(self):
         """prints sorted list"""
-        print(sorted(self))
+        if issubclass(MyList, list):
+            print(sorted(self))
