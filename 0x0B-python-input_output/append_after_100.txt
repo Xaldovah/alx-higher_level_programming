@@ -1,0 +1,6 @@
+Python is really important,
+"C is fun!"
+"C is fun!"
+- You don't get all Pythonic tricks
+"C is fun!"
+"C is fun!"
