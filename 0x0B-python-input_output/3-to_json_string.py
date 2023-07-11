@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""import module"""
 
 from json import dumps
 """to_json_string function module"""
