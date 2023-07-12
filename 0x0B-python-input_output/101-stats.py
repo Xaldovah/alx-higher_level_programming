@@ -1,15 +1,14 @@
 #!/usr/bin/python3
-"""import module"""
 import sys
 
-"""print_info function module"""
 
 def print_stats():
-    print("File size: {:d}".format(file_size))
+    print('File size: {:d}'.format(file_size))
 
     for scode, code_times in sorted(status_codes.items()):
-        if code_times > 1:
-            print("{}: {:d}".format(scode, code_times))
+        if code_times > 0:
+            print('{}: {:d}'.format(scode, code_times))
+
 
 status_codes = {
     '200': 0,
@@ -19,17 +18,17 @@ status_codes = {
     '403': 0,
     '404': 0,
     '405': 0,
-    '500': 0,
+    '500': 0
 }
 
+it = 0
 file_size = 0
-iterator = 0
 
 try:
     for line in sys.stdin:
-        if iterator != 0 and iterator % 10 == 0:
+        if it != 0 and it % 10 == 0:
             print_stats()
-        
+
         pieces = line.split()
 
         try:
@@ -45,8 +44,8 @@ try:
         except:
             pass
 
-        iterator += 1
-    
+        it += 1
+
     print_stats()
 except KeyboardInterrupt:
     print_stats()
