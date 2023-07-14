@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-"""import json module"""
+"""import modules"""
 import json
+import csv
+from os import path
 """Base class module"""
 
 
@@ -52,10 +54,42 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        """Returns a list of instances."""
-        filename = cls.__name__ + ".json"
-        try:
-            with open(filename, "r", encoding="utf-8") as f:
-                return cls.from_json_string(f.read())
-        except FileNotFoundError:
+        filename = cls.__name__ + '.json'
+
+        if path.exists(filename) is False:
             return []
+
+        with open(filename, mode='r', encoding='utf-8') as f:
+            objs = cls.from_json_string(f.read())
+            instances = []
+
+            for elem in objs:
+                instances.append(cls.create(**elem))
+
+            return instances
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Writes the CSV string"""
+        list_to_dict = []
+        if list_objs is not None:
+            list_objs = []
+        for items in list_objs:
+            list_to_dict.append(items.to_dictionary())
+
+        with open("{}.csv".format(cls.__name__), "w", encoding="utf-8") as f:
+            writer = csv.writer(f)
+            writer.writerows(list_objs)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Returns a list of instances"""
+        instanceList = []
+        try:
+            with open("{}".format(cls.__name__), "r", encoding="utf-8") as f:
+                objectList = cls.from_json_string(f.read())
+        except IOError:
+            return []
+        for dictionary in objectList:
+            instanceList.append(cls.create(**dictionary))
+        return instanceList
