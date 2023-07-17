@@ -95,3 +95,6 @@ class TestSquareClass(unittest.TestCase):
         sqr1 = Square(6)
         with self.assertRaises(ValueError):
             sqr1.size = -5
+
+if __name__ == '__main__':
+    unittest.main()
