@@ -6,11 +6,18 @@ from models.square import Square
 import pep8
 import json
 
+"""
+Test Class
+"""
+
 
 class TestRectangleClass(unittest.TestCase):
 
     @classmethod
     def setUp(cls):
+        """
+        setup class method
+        """
         Base._Base__nb_objects = 0
         cls.rect1 = Rectangle(2, 4)
         cls.rect2 = Rectangle(2, 4, 6)
@@ -19,18 +26,20 @@ class TestRectangleClass(unittest.TestCase):
 
     @classmethod
     def tearDownClass(self):
+        """
         pass
+        """
 
     def test_class(self):
-        """Rectangle is a class"""
+        """
+        Tests if Rectangle is a class.
+        """
         self.assertTrue(str(Rectangle), "<class 'models.rectangle.Rectangle'>")
 
-    def test_B_inheritance(self):
-        """Tests if Rectangle inherits Base."""
-        self.assertTrue(issubclass(Rectangle, Base))
-
     def test_id_4(self):
-        """Tests id"""
+        """
+        Tests id.
+        """
         b1 = Base(1)
         b2 = Base(2)
         b3 = Base(3)
@@ -43,25 +52,33 @@ class TestRectangleClass(unittest.TestCase):
         self.assertEqual(b5.id, 4)
 
     def test_id(self):
-        """Tests id"""
+        """
+        Tests id.
+        """
         r1 = Rectangle(10, 2)
         self.assertEqual(r1.id, 4)
         r2 = Rectangle(10, 2, 0, 0, 12)
         self.assertEqual(r2.id, 12)
 
     def test_to_dict(self):
-        """Tests dict"""
+        """
+        Tests dict.
+        """
         dict1 = self.rect1.to_dictionary()
         self.assertEqual(
             {"x": 0, "y": 0, "id": 1, "height": 4, "width": 2}, dict1)
 
     def test_area(self):
-        """Tests area"""
+        """
+        Tests area.
+        """
         r1 = Rectangle(10, 10, 10, 10, 42)
         self.assertEqual(str(r1), "[Rectangle] (42) 10/10 - 10/10")
 
     def test_update(self):
-        """Tests the update"""
+        """
+        Tests the update.
+        """
         rect1 = {"id": 42, "width": 1, "height": 2, "x": 3, "y": 4}
         rect2 = {"id": 23, "width": 4, "height": 3, "x": 5, "y": 12}
         rdct_create1 = Rectangle.create(**rect1)
@@ -72,13 +89,17 @@ class TestRectangleClass(unittest.TestCase):
         self.assertTrue(isinstance(rect2, dict))
 
     def test_save_to_file(self):
-        """Tests save to file"""
+        """
+        Tests save to file.
+        """
         Rectangle.save_to_file(None)
         with open("Rectangle.json", "r") as f:
             self.assertEqual("[]", f.read())
 
     def test_save_load_file(self):
-        """Tests save load file"""
+        """
+        Tests save load file.
+        """
         r1 = Rectangle(10, 7, 2, 8)
         r2 = Rectangle(2, 4)
         Rectangle.save_to_file([r1, r2])
@@ -86,10 +107,18 @@ class TestRectangleClass(unittest.TestCase):
         self.assertTrue(isinstance(load_file, list))
 
     def test_args(self):
-        """Tests args"""
+        """
+        Tests args.
+        """
         with self.assertRaises(TypeError):
             rect1 = Rectangle()
             self.rect1.area(1)
+
+    def test_inheritance(self):
+        """
+        Tests if Rectangle inherits Base.
+        """
+        self.assertTrue(issubclass(Rectangle, Base))
 
 
 if __name__ == '__main__':
