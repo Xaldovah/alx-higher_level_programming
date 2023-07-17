@@ -7,6 +7,7 @@ from models.square import Square
 import json
 import pep8
 
+
 class TestBaseClass(unittest.TestCase):
     """Test the class Base"""
 
@@ -20,7 +21,7 @@ class TestBaseClass(unittest.TestCase):
     def tearDown(cls):
         """tearDown"""
         pass
-    
+
     def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
         pep8style = pep8.StyleGuide(quiet=True)
@@ -36,7 +37,7 @@ class TestBaseClass(unittest.TestCase):
     def test_is_private(self):
         """Test that nb_objects is private."""
         print("__nb_object is private")
-        self.assertFalse(hasattr(Base, "_Base__nb_objects"), 0)        
+        self.assertFalse(hasattr(Base, "_Base__nb_objects"), 0)
 
     def test_id_1(self):
         """Test the id attribute of Base."""

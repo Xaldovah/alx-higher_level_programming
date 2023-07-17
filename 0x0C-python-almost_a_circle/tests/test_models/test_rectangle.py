@@ -7,6 +7,7 @@ from models.square import Square
 import json
 import pep8
 
+
 class TestRectangleClass(unittest.TestCase):
     """Test the class Rectangle"""
 
@@ -23,7 +24,7 @@ class TestRectangleClass(unittest.TestCase):
     def tearDown(cls):
         """tearDown"""
         pass
-    
+
     def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
         pep8style = pep8.StyleGuide(quiet=True)
@@ -60,7 +61,7 @@ class TestRectangleClass(unittest.TestCase):
         dict1 = self.rect1.to_dictionary()
         self.assertEqual(
             {"id": 1, "width": 2, "height": 3, "x": 0, "y": 0}, dict1)
-    
+
     def test_class(self):
         """Test the class of Rectangle."""
         self.assertTrue(str(Rectangle), "<class 'models.rectangle.Rectangle'>")
@@ -106,4 +107,4 @@ class TestRectangleClass(unittest.TestCase):
         rect1 = Rectangle(1, 2)
         self.assertEqual(rect1.id, 1)
         rect2 = Rectangle(2, 3, 4, 5)
-        self.assertEqual(rect2.id, 2) 
+        self.assertEqual(rect2.id, 2)

@@ -7,6 +7,7 @@ from models.square import Square
 import json
 import pep8
 
+
 class TestSquareClass(unittest.TestCase):
     """Test the class Square"""
 
@@ -23,12 +24,13 @@ class TestSquareClass(unittest.TestCase):
     def tearDown(cls):
         """tearDown"""
         pass
-    
+
     def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
         pep8style = pep8.StyleGuide(quiet=True)
         result = pep8style.check_files(['models/square.py'])
-        self.assertEqual(result.total_errors, 0, "Found code style errors (and warnings).")
+        self.assertEqual(result.total_errors, 0, "Found code style errors \
+                (and warnings).")
 
     def test_is_subclass(self):
         """Test that Square is a subclass of Base."""
