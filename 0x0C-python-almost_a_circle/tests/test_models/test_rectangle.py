@@ -90,3 +90,7 @@ class TestRectangleClass(unittest.TestCase):
         with self.assertRaises(TypeError):
             rect1 = Rectangle()
             self.rect1.area(1)
+
+
+if __name__ == '__main__':
+    unittest.main()
