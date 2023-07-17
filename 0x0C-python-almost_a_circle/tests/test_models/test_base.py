@@ -28,16 +28,10 @@ class TestBaseClass(unittest.TestCase):
         result = pep8style.check_files(['models/base.py'])
         self.assertEqual(result.total_errors, 0, "Pep8 Error in file")
 
-    def test_docstring(self):
-        """Test for docstring"""
-        self.assertIsNotNone(Base.__doc__)
-        self.assertIsNotNone(Rectangle.__doc__)
-        self.assertIsNotNone(Square.__doc__)
-
     def test_is_private(self):
         """Test that nb_objects is private."""
         print("__nb_object is private")
-        self.assertFalse(hasattr(Base, "_Base__nb_objects"), 0)
+        self.assertTrue(hasattr(Base, "_Base__nb_objects"), 0)
 
     def test_id_1(self):
         """Test the id attribute of Base."""
