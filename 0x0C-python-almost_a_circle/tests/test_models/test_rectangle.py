@@ -136,6 +136,10 @@ class TestRectangleClass(unittest.TestCase):
         """
         with self.assertRaises(TypeError):
             rect1 = Rectangle("Ruby", "Kotlin")
+            rect1 = Rectangle("1", 2)
+            rect1 = Rectangle(1, "2")
+            rect1 = Rectangle(1, 2, "3")
+            rect1 = Rectangle(1, 2, 3, "4")
 
     def test_save_to_file_empty_list(self):
         """
