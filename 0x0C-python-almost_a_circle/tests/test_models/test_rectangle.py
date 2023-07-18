@@ -5,6 +5,7 @@ from models.rectangle import Rectangle
 from models.square import Square
 import pep8
 import json
+import os
 
 """
 Test Class
@@ -21,14 +22,23 @@ class TestRectangleClass(unittest.TestCase):
         Base._Base__nb_objects = 0
         cls.rect1 = Rectangle(2, 4)
         cls.rect2 = Rectangle(2, 4, 6)
-        cls.rect2 = Rectangle(2, 4, 6, 8)
-        cls.rect2 = Rectangle(2, 4, 6, 8, 10)
+        cls.rect3 = Rectangle(2, 4, 6, 8)
+        cls.rect4 = Rectangle(2, 4, 6, 8, 10)
 
     @classmethod
     def tearDownClass(self):
         """
         pass
         """
+
+    def test_pep8(self):
+        """
+        Test that the code conforms to PEP8.
+        """
+        style = pep8.StyleGuide(quiet=True, exclude=["models/Square.json"])
+        result = style.check_files(
+            ['models/base.py', 'models/rectangle.py', 'models/square.py'])
+        self.assertEqual(result.total_errors, 0, "Pep8 Error in file")
 
     def test_class(self):
         """
@@ -119,6 +129,88 @@ class TestRectangleClass(unittest.TestCase):
         Tests if Rectangle inherits Base.
         """
         self.assertTrue(issubclass(Rectangle, Base))
+
+    def test_string(self):
+        """
+        Test string
+        """
+        with self.assertRaises(TypeError):
+            rect1 = Rectangle("Ruby", "Kotlin")
+
+    def test_save_to_file_empty_list(self):
+        """
+        Test save_to_file method with an empty list.
+        """
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual("[]", f.read())
+
+    def test_save_to_file_rectangle_list(self):
+        """
+        Test save_to_file method with a list of Rectangle objects.
+        """
+        r1 = Rectangle(1, 2)
+        r2 = Rectangle(3, 4)
+        Rectangle.save_to_file([r1, r2])
+        with open("Rectangle.json", "r") as f:
+            data = json.load(f)
+            self.assertTrue(isinstance(data, list))
+            self.assertEqual(len(data), 2)
+            self.assertEqual(data[0]['width'], 1)
+            self.assertEqual(data[0]['height'], 2)
+            self.assertEqual(data[1]['width'], 3)
+            self.assertEqual(data[1]['height'], 4)
+
+    def test_load_from_file_nonexistent_file(self):
+        """
+        Test load_from_file method with a nonexistent file.
+        """
+        try:
+            os.remove("Rectangle.json")
+        except FileNotFoundError:
+            pass
+
+        data = Rectangle.load_from_file()
+        self.assertTrue(isinstance(data, list))
+        self.assertEqual(len(data), 0)
+
+    def test_load_from_file_rectangle_file(self):
+        """
+        Test load_from_file method with a file containing Rectangle data.
+        """
+        r1 = Rectangle(1, 2)
+        r2 = Rectangle(3, 4)
+        Rectangle.save_to_file([r1, r2])
+
+        data = Rectangle.load_from_file()
+        self.assertTrue(isinstance(data, list))
+        self.assertEqual(len(data), 2)
+        self.assertEqual(data[0].width, 1)
+        self.assertEqual(data[0].height, 2)
+        self.assertEqual(data[1].width, 3)
+        self.assertEqual(data[1].height, 4)
+
+    def test_save_to_file_rectangle_list(self):
+        """
+        Test save_to_file method with a list of Rectangle objects.
+        """
+        rect1 = Rectangle(1, 2)
+        rect2 = Rectangle(3, 4)
+        Rectangle.save_to_file([rect1, rect2])
+        with open("Rectangle.json", "r") as f:
+            data = json.load(f)
+            self.assertTrue(isinstance(data, list))
+            self.assertEqual(len(data), 2)
+            self.assertEqual(data[0]['id'], rect1.id)
+            self.assertEqual(data[0]['width'], rect1.width)
+            self.assertEqual(data[0]['height'], rect1.height)
+            self.assertEqual(data[0]['x'], rect1.x)
+            self.assertEqual(data[0]['y'], rect1.y)
+            self.assertEqual(data[1]['id'], rect2.id)
+            self.assertEqual(data[1]['width'], rect2.width)
+            self.assertEqual(data[1]['height'], rect2.height)
+            self.assertEqual(data[1]['x'], rect2.x)
+            self.assertEqual(data[1]['y'], rect2.y)
 
 
 if __name__ == '__main__':

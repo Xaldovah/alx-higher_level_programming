@@ -18,16 +18,25 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         """Setter"""
-        if type(value) is not int:
-            raise TypeError("width must be an integer")
+        if not isinstance(value, int):
+            raise TypeError("size must be an integer")
         if value <= 0:
-            raise ValueError("width must be > 0")
+            raise ValueError("size must be > 0")
         self.width = value
         self.height = value
 
     def __str__(self):
         """String representation"""
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+
+    def display(self):
+        """Display the square"""
+        display_str = ""
+        for _ in range(self.y):
+            display_str += "\n"
+        for _ in range(self.size):
+            display_str += " " * self.x + "#" * self.size + "\n"
+        return display_str
 
     def update(self, *args, **kwargs):
         """Update"""

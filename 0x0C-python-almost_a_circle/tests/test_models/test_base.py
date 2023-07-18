@@ -22,10 +22,13 @@ class TestBaseClass(unittest.TestCase):
         """tearDown"""
         pass
 
-    def test_pep8_conformance(self):
-        """Test that we conform to PEP8."""
-        pep8style = pep8.StyleGuide(quiet=True)
-        result = pep8style.check_files(['models/base.py'])
+    def test_pep8(self):
+        """
+        Test that the code conforms to PEP8.
+        """
+        style = pep8.StyleGuide(quiet=True)
+        result = style.check_files(
+                ['models/base.py', 'models/rectangle.py', 'models/square.py'])
         self.assertEqual(result.total_errors, 0, "Pep8 Error in file")
 
     def test_is_private(self):
