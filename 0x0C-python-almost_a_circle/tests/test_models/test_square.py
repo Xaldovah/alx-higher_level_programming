@@ -2,7 +2,7 @@
 import unittest
 import json
 import pep8
-from unittest.mock import patch
+from contextlib import redirect_stdout
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
@@ -118,29 +118,18 @@ class TestSquareClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             sqr.size = -5
 
-    def test_square_display_without_x_y(self):
-        """
-        Test Square display method without x and y.
-        """
-        sqr = Square(2)
-        expected_output = "##\n##\n"
-        self.assertEqual(sqr.display(), expected_output)
-
-    def test_square_display_without_y(self):
-        """
-        Test Square display method without y.
-        """
-        sqr = Square(2, 1)
-        expected_output = " ##\n ##\n"
-        self.assertEqual(sqr.display(), expected_output)
-
     def test_square_display(self):
         """
         Test Square display method with all parameters.
         """
-        sqr = Square(2, 1, 2)
-        expected_output = "\n\n ##\n ##\n"
-        self.assertEqual(sqr.display(), expected_output)
+        with StringIO() as bufr, redirect_stdout(bufr):
+            Square(4).display()
+            b = bufr.getvalue()
+        self.assertEqual(b, '####\n####\n####\n####\n')
+        with StringIO() as bufr, redirect_stdout(bufr):
+            Square(3, 1, 2).display()
+            b = bufr.getvalue()
+        self.assertEqual(b, '\n\n ###\n ###\n ###\n')
 
     def test_save_to_file_square_list(self):
         """

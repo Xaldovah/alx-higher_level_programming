@@ -31,12 +31,10 @@ class Square(Rectangle):
 
     def display(self):
         """Display the square"""
-        result = ""
         for _ in range(self.y):
-            result += "\n"
+            print()
         for _ in range(self.size):
-            result += " " * self.x + "#" * self.size + "\n"
-        return result
+            print(" " * self.x + "#" * self.size)
 
     def update(self, *args, **kwargs):
         """Update"""
