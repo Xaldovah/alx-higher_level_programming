@@ -131,6 +131,11 @@ class TestSquareClass(unittest.TestCase):
             b = bufr.getvalue()
         self.assertEqual(b, '\n\n ###\n ###\n ###\n')
 
+    def test_display(self):
+        """Test display"""
+        with self.assertRaises(TypeError):
+            self.sqr1.display(1)
+
     def test_save_to_file_square_list(self):
         """
         Test save_to_file method with a list of Square objects.
