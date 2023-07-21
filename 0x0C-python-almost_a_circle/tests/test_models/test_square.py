@@ -2,9 +2,11 @@
 import unittest
 import json
 import pep8
+from unittest.mock import patch
 from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
+from io import StringIO
 
 """
 TestSquareClass module
@@ -116,29 +118,45 @@ class TestSquareClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             sqr.size = -5
 
-    def test_square_display_without_x_y(self):
+    def test_display(self):
         """
-        Test Square display method without x and y.
+        Test display method of the square class.
         """
-        sqr = Square(2)
-        expected_output = "##\n##\n"
-        self.assertEqual(sqr.display(), expected_output)
+        sqr_1 = "#\n"
+        sqr1 = Square(1)
+        with patch('sys.stdout', new=StringIO()) as mock_out:
+            sqr1.display()
+            self.assertEqual(mock_out.getvalue(), sqr_1)
 
-    def test_square_display_without_y(self):
-        """
-        Test Square display method without y.
-        """
-        sqr = Square(2, 1)
-        expected_output = " ##\n ##\n"
-        self.assertEqual(sqr.display(), expected_output)
+        sqr_2 = "##\n##\n"
+        sqr2 = Square(2, 0)
+        with patch('sys.stdout', new=StringIO()) as mock_out:
+            sqr2.display()
+            self.assertEqual(mock_out.getvalue(), sqr_2)
 
-    def test_square_display(self):
-        """
-        Test Square display method with all parameters.
-        """
-        sqr = Square(2, 1, 2)
-        expected_output = "\n\n ##\n ##\n"
-        self.assertEqual(sqr.display(), expected_output)
+        sqr_3 = "\n\n  ###\n  ###\n  ###\n"
+        sqr3 = Square(3, 2, 2, 2)
+        with patch('sys.stdout', new=StringIO()) as mock_out:
+            sqr3.display()
+            self.assertEqual(mock_out.getvalue(), sqr_3)
+
+        sqr_4 = "  ##\n  ##\n"
+        sqr4 = Square(2, 2, 0)
+        with patch('sys.stdout', new=StringIO()) as mock_out:
+            sqr4.display()
+            self.assertEqual(mock_out.getvalue(), sqr_4)
+
+        sqr_5 = "\n\n  ##\n  ##\n"
+        sqr5 = Square(2, 2, 2)
+        with patch('sys.stdout', new=StringIO()) as mock_out:
+            sqr5.display()
+            self.assertEqual(mock_out.getvalue(), sqr_5)
+
+        sqr_6 = "\n\n\n  ##\n  ##\n"
+        sqr6 = Square(2, 2, 3, 100)
+        with patch('sys.stdout', new=StringIO()) as mock_out:
+            sqr6.display()
+            self.assertEqual(mock_out.getvalue(), sqr_6)
 
     def test_save_to_file_square_list(self):
         """
