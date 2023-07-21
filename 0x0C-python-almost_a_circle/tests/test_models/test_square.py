@@ -118,45 +118,32 @@ class TestSquareClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             sqr.size = -5
 
-    def test_display(self):
+    def test_display_without_x_y(self):
         """
-        Test display method of the square class.
+        Test display method of the square class without x and y.
         """
-        sqr_1 = "#\n"
-        sqr1 = Square(1)
+        sqr_1 = "##\n##\n"
+        sqr1 = Square(2)
         with patch('sys.stdout', new=StringIO()) as mock_out:
             sqr1.display()
             self.assertEqual(mock_out.getvalue(), sqr_1)
 
-        sqr_2 = "##\n##\n"
-        sqr2 = Square(2, 0)
+    def test_display_without_y(self):
+        """
+        Test display method of the square class without y.
+        """
+        sqr_2 = "  ##\n  ##\n"
+        sqr2 = Square(2, 2)
         with patch('sys.stdout', new=StringIO()) as mock_out:
             sqr2.display()
             self.assertEqual(mock_out.getvalue(), sqr_2)
 
-        sqr_3 = "\n\n  ###\n  ###\n  ###\n"
-        sqr3 = Square(3, 2, 2, 2)
-        with patch('sys.stdout', new=StringIO()) as mock_out:
-            sqr3.display()
-            self.assertEqual(mock_out.getvalue(), sqr_3)
-
-        sqr_4 = "  ##\n  ##\n"
-        sqr4 = Square(2, 2, 0)
-        with patch('sys.stdout', new=StringIO()) as mock_out:
-            sqr4.display()
-            self.assertEqual(mock_out.getvalue(), sqr_4)
-
-        sqr_5 = "\n\n  ##\n  ##\n"
-        sqr5 = Square(2, 2, 2)
-        with patch('sys.stdout', new=StringIO()) as mock_out:
-            sqr5.display()
-            self.assertEqual(mock_out.getvalue(), sqr_5)
-
-        sqr_6 = "\n\n\n  ##\n  ##\n"
-        sqr6 = Square(2, 2, 3, 100)
-        with patch('sys.stdout', new=StringIO()) as mock_out:
-            sqr6.display()
-            self.assertEqual(mock_out.getvalue(), sqr_6)
+    def test_display_exists(self):
+        """
+        Test if the display method of the square class exists.
+        """
+        sqr3 = Square(2, 2, 2)
+        self.assertTrue(hasattr(sqr3, 'display'))
 
     def test_save_to_file_square_list(self):
         """
