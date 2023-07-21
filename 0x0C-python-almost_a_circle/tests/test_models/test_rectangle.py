@@ -150,6 +150,8 @@ class TestRectangleClass(unittest.TestCase):
     def test_width_zero(self):
         with self.assertRaisesRegex(ValueError, "width must be > 0"):
             Rectangle(0, 2)
+        with self.assertRaisesRegex(ValueError, "height must be > 0"):
+            Rectangle(1, 0)
 
     def test_save_to_file_empty_list(self):
         """
