@@ -118,32 +118,29 @@ class TestSquareClass(unittest.TestCase):
         with self.assertRaises(ValueError):
             sqr.size = -5
 
-    def test_display_without_x_y(self):
+    def test_square_display_without_x_y(self):
         """
-        Test display method of the square class without x and y.
+        Test Square display method without x and y.
         """
-        sqr_1 = "##\n##\n"
-        sqr1 = Square(2)
-        with patch('sys.stdout', new=StringIO()) as mock_out:
-            sqr1.display()
-            self.assertEqual(mock_out.getvalue(), sqr_1)
+        sqr = Square(2)
+        expected_output = "##\n##\n"
+        self.assertEqual(sqr.display(), expected_output)
 
-    def test_display_without_y(self):
+    def test_square_display_without_y(self):
         """
-        Test display method of the square class without y.
+        Test Square display method without y.
         """
-        sqr_2 = "  ##\n  ##\n"
-        sqr2 = Square(2, 2)
-        with patch('sys.stdout', new=StringIO()) as mock_out:
-            sqr2.display()
-            self.assertEqual(mock_out.getvalue(), sqr_2)
+        sqr = Square(2, 1)
+        expected_output = " ##\n ##\n"
+        self.assertEqual(sqr.display(), expected_output)
 
-    def test_display_exists(self):
+    def test_square_display(self):
         """
-        Test if the display method of the square class exists.
+        Test Square display method with all parameters.
         """
-        sqr3 = Square(2, 2, 2)
-        self.assertTrue(hasattr(sqr3, 'display'))
+        sqr = Square(2, 1, 2)
+        expected_output = "\n\n ##\n ##\n"
+        self.assertEqual(sqr.display(), expected_output)
 
     def test_save_to_file_square_list(self):
         """
