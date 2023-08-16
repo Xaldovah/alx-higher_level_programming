@@ -1,6 +1,4 @@
--- creates the MySQL server user 
--- script that creates the MySQL server user user_0d_1
-DROP USER IF EXISTS 'user_0d_1'@'localhost';
+-- create user if not exists
 CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
-GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
-FLUSH PRIVILEGES
+-- Grant all privileges to the user
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost' WITH GRANT OPTION;
