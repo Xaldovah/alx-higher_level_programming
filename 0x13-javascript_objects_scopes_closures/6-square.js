@@ -8,6 +8,8 @@ module.exports = class Square extends prevSquare {
   }
 
   charPrint (c = 'X') {
-    super.print(c);
+    for (let i = 0; i < this.height; i++) {
+      console.log(c.repeat(this.width));
+    }
   }
 };
