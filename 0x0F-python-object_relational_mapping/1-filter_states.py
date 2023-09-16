@@ -17,37 +17,14 @@ if __name__ == '__main__':
 
     Prints the retrieved data to the console.
     """
-    try:
-        db = MySQLdb.connect(
-            host="localhost",
-            user=username,
-            passwd=password,
-            db=database,
-            port=3306
-        )
-        cur = db.cursor()
-        cur.execute("SELECT * FROM states WHERE name LIKE 'N%' \
-                ORDER BY id ASC")
-        rows = cur.fetchall()
-        for row in rows:
-            print(row)
+    db = MySQLdb.connect(host="localhost", user=argv[1], port=3306,
+                         passwd=argv[2], db=argv[3])
 
-    except MySQLdb.Error as e:
-        print("MySQL Error:", e)
+    cur = db.cursor()
+    cur.execute("SELECT * FROM states \
+            WHERE name LIKE BINARY 'N%' \
+            ORDER BY states.id ASC")
+    rows = cur.fetchall()
 
-    finally:
-        if cur:
-            cur.close()
-        if db:
-            db.close()
-
-if __name__ == '__main__':
-    if len(sys.argv) != 4:
-        print("Usage: {} <username> <password> <database>".format(sys.argv[0]))
-        sys.exit(1)
-
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    filter_states(username, password, database)
+    for row in rows:
+        print(row)
