@@ -1,11 +1,24 @@
 #!/usr/bin/python3
-"""Start link class to table in database
 """
-import sys
-from model_state import Base, State
+python file that contains the class definition of a State
+and an instance Base = declarative_base()
+"""
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
-from sqlalchemy import (create_engine)
+Base = declarative_base()
 
-if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
+
+class State(Base):
+    """
+    inherits from Base
+    links to the MySQL table states
+    class attribute id that represents a column of an auto-generated,
+    unique integer, can’t be null and is a primary key
+    class attribute name that represents a column of a string
+    with maximum 128 characters and can’t be null
+    """
+    __tablename__ = "states"
+
+    id = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String(128), nullable=False)

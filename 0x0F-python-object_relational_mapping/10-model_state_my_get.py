@@ -1,31 +1,37 @@
 #!/usr/bin/python3
-'''
-Prints the State object with the name passed as argument
+"""
+Prints the State object with the name passed as an argument
 from the database hbtn_0e_6_usa
-'''
-
+"""
+import MySQLdb
 from sys import argv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import Base, State
 
 if __name__ == "__main__":
+    if len(argv) != 5:
+        print("Usage: {} <username> <password> <database> <state_name>".format(
+            argv[0]))
+        exit(1)
 
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.
-                           format(argv[1], argv[2], argv[3],
-                                  pool_pre_ping=True))
-
+    username = argv[1]
+    password = argv[2]
+    database = argv[3]
     state_name = argv[4]
-    flag = 0
+
+    engine = create_engine(
+            'mysql+mysqldb://{}:{}@localhost:3306/{}?charset=utf8'.format(
+                username, password, database), pool_pre_ping=True)
 
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    for state in session.query(State).order_by(State.id):
-        if state.name == state_name:
-            print('{}'.format(state.id))
-            flag = 1
-    if not flag:
-        print('Not found')
+    state = session.query(State).filter(State.name == state_name).first()
+
+    if state:
+        print(state.id)
+    else:
+        print("Not found")
 
     session.close()
