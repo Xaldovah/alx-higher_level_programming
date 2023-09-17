@@ -16,7 +16,6 @@ if __name__ == '__main__':
     - argv[1]: MySQL username
     - argv[2]: MySQL password
     - argv[3]: MySQL database name
-    - argv[4]: State name to search for
 
     Prints the retrieved data to the console.
     """
@@ -25,13 +24,12 @@ if __name__ == '__main__':
 
     with db.cursor() as cur:
         cur.execute("""
-            SELECT * FROM states WHERE name LIKE BINARY %(name)s
-            ORDER BY states.id ASC""", {'name': argv[4]})
+            SELECT cities.id, cities.name, states.name FROM cities
+            JOIN states ON cities.state_id = state.id
+            WHERE states.name LIKE BINARY %(state_name)s
+            ORDER BY cities.id ASC""", {'state_name': argv[4]})
+
         rows = cur.fetchall()
 
     if rows is not None:
-        for row in rows:
-            print(row)
-
-    cur.close()
-    db.close()
+        print(", ".join([row[1] for row in rows]))
