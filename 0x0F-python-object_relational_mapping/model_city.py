@@ -11,9 +11,9 @@ Base = declarative_base()
 
 class City(Base):
     """
-    State class inherits from Base
+    City class inherits from Base
     """
-    __tablename__ = "states"
+    __tablename__ = "cities"
 
     id = Column(Integer, primary_key=True, nullable=False)
     name = Column(String(128), nullable=False)
