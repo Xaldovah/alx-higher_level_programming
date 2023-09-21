@@ -40,3 +40,5 @@ if __name__ == '__main__':
     if rows:
         city_names = [row[0] for row in rows]
         print(", ".join(city_names))
+    else:
+        print()
