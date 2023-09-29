@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
         if {'id', 'name'} <= r.keys():
             print('[{id}] {name}'.format(id=r.get('id'), name=r.get('name')))
-    else:
-        print('No result')
+        else:
+            print('No result')
     except ValueError:
         print('Not a valid JSON')
