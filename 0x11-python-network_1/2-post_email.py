@@ -3,20 +3,14 @@
 sends a POST request to the passed URL with the email as a parameter
 displays the body of the response (decoded in utf-8)
 """
-import urllib.request
-import urllib.parse
-import sys
+from urllib.request import urlopen, Request
+from urllib.parse import urlencode
+from sys import argv
 
 
-if len(sys.argv) < 3:
-    sys.exit(1)
+if __name__ == "__main__":
+    data = urlencode({'email': argv[2]}).encode('ascii')
+    req = Request(argv[1], data)
 
-url = sys.argv[1]
-email = sys.argv[2]
-
-dt = urllib.parse.urlencode({'email': email}).encode('utf-8')
-
-req = urllib.request.Request(url, dt)
-with urllib.request.urlopen(req) as r:
-    body = r.read().decode('utf-8')
-    print(body)
+    with urlopen(req) as r:
+        print(r.read().decode('utf-8'))
