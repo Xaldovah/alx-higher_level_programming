@@ -9,8 +9,12 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    data = urlencode({'email': argv[2]}).encode('ascii')
-    req = Request(argv[1], data)
+    url = sys.argv[1]
+    email = sys.argv[2]
 
-    with urlopen(req) as r:
-        print(r.read().decode('utf-8'))
+    data = urllib.parse.urlencode({'email': email}).encode('ascii')
+
+    req = urllib.request.Request(url, data)
+    with urllib.request.urlopen(req) as r:
+        body = r.read().decode('utf-8')
+        print(body)
