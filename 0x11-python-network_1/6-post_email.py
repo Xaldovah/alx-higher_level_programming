@@ -8,4 +8,4 @@ if __name__ == "__main__":
     payload = {'email': argv[2]}
     req = requests.post(argv[1], data=payload)
 
-    print("Your email is:", req.text)
+    print(req.text)
