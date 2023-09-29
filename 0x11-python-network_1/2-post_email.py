@@ -9,12 +9,8 @@ from sys import argv
 
 
 if __name__ == "__main__":
-    url = sys.argv[1]
-    email = sys.argv[2]
+    data = urlencode({'email': argv[2]}).encode('ascii')
+    req = Request(argv[1], data)
 
-    data = urlencode({'email': email}).encode('ascii')
-
-    req = Request(url, data)
     with urlopen(req) as r:
-        body = r.read().decode('utf-8')
-        print(body)
+        print(r.read().decode('utf-8'))
